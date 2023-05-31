@@ -14,6 +14,7 @@ def convert_to_mp3(input_file, output_file):
     ]
 
     try:
+        save_path = filedialog.asksaveasfile(output_file)
         subprocess.run(ffmpeg_cmd, check=True)
         print("Video has been successfully converted.")
 
@@ -26,6 +27,6 @@ root.withdraw()
 
 input_file = filedialog.askopenfilename(
     title="Select a video file",
-    filetypes=[("Video files", "*.mp4;*.avi;*.mov"), ("All files", "*.*")]
+    filetypes=[("Video files", "*.mp4;*.avi;*.mov")]
 )
 
