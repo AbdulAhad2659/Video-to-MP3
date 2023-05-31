@@ -2,10 +2,11 @@ import os
 import subprocess
 from tkinter import Tk, filedialog, messagebox
 
-def convert_to_mp3(input_file, output_file):
+
+def convert_to_mp3(video_file, output_file):
     ffmpeg_cmd = [
         "ffmpeg",
-        "-i", input_file,
+        "-i", video_file,
         "-vn",
         "-acodec", "libmp3lame",
         "-ab", "192k",
@@ -14,7 +15,6 @@ def convert_to_mp3(input_file, output_file):
     ]
 
     try:
-        save_path = filedialog.askdirectory()
         subprocess.run(ffmpeg_cmd, check=True)
         messagebox.showinfo("Success", "Video has been successfully converted.")
 
@@ -30,5 +30,5 @@ input_file = filedialog.askopenfilename(
     filetypes=[("Video files", "*.mp4"), ("All files", "*.*")]
 )
 
-convert_to_mp3(input_file, "output.mp3")
-
+save_path = filedialog.askdirectory(title = "Select output folder")
+convert_to_mp3(input_file, save_path + "/audio only.mp3")
